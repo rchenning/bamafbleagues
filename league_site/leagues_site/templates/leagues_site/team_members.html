@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Members</title>
+</head>
+<body>
+{% extends "leagues_site/base.html" %}
+
+{% block page_header %}
+    <h3><a href="{% url 'leagues_site:teams' league.id %}">{{ league }}</a></h3>
+
+    <h4>Team: {{ team }}</h4>
+
+    <h4>Team Members:</h4>
+{% endblock page_header %}
+
+{% block content %}
+    <ul>
+        {% for team_member in team_members %}
+            <li><h5>{{ team_member }}</h5>
+                <h6><a href="{% url 'leagues_site:edit_team_member' team_member.id %}">edit</a></h6>
+            </li>
+        {% empty %}
+        <li><h5>No team members have been added to this team yet.</h5></li>
+        {% endfor %}
+    </ul>
+
+    <h4><a href="{% url 'leagues_site:new_team_member' league.id team.id %}">Add a new team member</a></h4>
+{% endblock content %}
+
+</body>
+</html>

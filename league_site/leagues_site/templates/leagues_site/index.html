@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+{% extends "leagues_site/base.html" %}
+
+{% block page_header %}
+    <h1>Leagues</h1>
+{% endblock page_header %}
+
+{% block content %}
+    <ul>
+        {% for league in leagues %}
+        <li><h5><a href="{% url 'leagues_site:teams' league.id %}">{{ league }}</a></h5>
+            <h6><a href="{% url 'leagues_site:edit_league' league.id %}">edit</a></h6>
+            </li>
+        {% empty %}
+        <li><h5>No leagues have been added yet.</h5></li>
+        {% endfor %}
+    </ul>
+
+    <h4><a href="{% url 'leagues_site:new_league' %}">Add a new league</a></h4>
+
+{% endblock content %}
+</body>
+</html>
